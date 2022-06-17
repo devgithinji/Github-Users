@@ -11,9 +11,6 @@ const App = () => (
                         <Dashboard/>
                     </PrivateRoute>
                 }/>
-                <PrivateRoute path='/' exact>
-                    <Dashboard/>
-                </PrivateRoute>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='*' element={<Error/>}/>
             </Routes>
