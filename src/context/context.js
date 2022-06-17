@@ -14,9 +14,41 @@ const GithubProvider = ({children}) => {
     const [followers, setFollowers] = useState(mockFollowers)
     //request loading
     const [requests, setRequests] = useState(0);
-    const [loading, isLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     //error
     const [error, setError] = useState({show: false, msg: ''})
+
+
+    const searchGithubUser = async (user) => {
+        toggleError()
+        setIsLoading(true)
+        try {
+            const {data: userData} = await axios.get(`${rootUrl}/users/${user}`)
+            setGithubUser(userData);
+            const {login, followers_url} = userData;
+
+            const [repos, followers] = await Promise.allSettled([
+                axios.get(`${rootUrl}/users/${login}/repos?per_page=100`),
+                axios.get(`${followers_url}?per_page=100`)
+            ]);
+
+            const status = 'fulfilled';
+
+            if (repos.status === status) {
+                setRepos(repos.value.data)
+            }
+
+            if (followers.status === status) {
+                setFollowers(followers.value.data)
+            }
+
+
+        } catch (e) {
+            toggleError(true, 'no user with that username')
+        }
+        setIsLoading(false)
+        checkRequests();
+    }
 
     //check rate
     const checkRequests = async () => {
@@ -27,7 +59,6 @@ const GithubProvider = ({children}) => {
             if (remaining === 0) {
                 toggleError(true, 'sorry you have exceeded your hourly rate limit')
             }
-            console.log(data)
         } catch (e) {
             console.log(e)
         }
@@ -43,10 +74,9 @@ const GithubProvider = ({children}) => {
     }, [])
 
     return (
-        <GithubContext.Provider value={{githubUser, repos, followers, requests, error}}>
+        <GithubContext.Provider value={{githubUser, repos, followers, requests, error, searchGithubUser, isLoading}}>
             {children}
-        </GithubContext.Provider>
-    )
+        </GithubContext.Provider>)
 }
 
 export {GithubProvider, GithubContext}
