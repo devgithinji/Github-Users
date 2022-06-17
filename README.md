@@ -1,4 +1,6 @@
-## Starter Project
+# Github Users
+
+click [here](https://github-users-ke.netlify.app) to visit application
 
 - css provided (global styles, styled components)
 - folders/files already setup
@@ -109,3 +111,5 @@ package.json
 ```
 
 [create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
+
+Dennis Githinji 👍
