@@ -40,7 +40,6 @@ import { FiUsers, FiUserPlus } from 'react-icons/fi';
 version used - "react-router-dom": "^5.2.0",
 
 - [react-router-dom - Main Docs](https://reactrouter.com/web/guides/quick-start)
-
 - <Switch> renders the first child <Route> that matches
 - A <Route path="*"> always matches
 
@@ -64,7 +63,6 @@ version used - "react-router-dom": "^5.2.0",
 ## Auth0
 
 - [Auth0 - Main Docs](https://auth0.com/)
-
 - Create Application
 - Choose : Single Page Web Applications
 - Choose : React
@@ -77,10 +75,8 @@ version used - "react-router-dom": "^5.2.0",
   - Allowed Logout URLs
   - Allowed Web Origins
   - SAVE CHANGES!!!!!!!!!!!!!!!
-
 - Connections
   email,social
-
 - [React SDK Docs](https://auth0.com/docs/libraries/auth0-react)
 - [REACT SDK API Docs](https://auth0.github.io/auth0-react/)
 
